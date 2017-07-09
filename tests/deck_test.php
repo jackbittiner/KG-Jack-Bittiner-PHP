@@ -20,6 +20,15 @@ class DeckTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('D', $deck->cards[51]->suit);
   }
 
+  public function testForCardSequences()
+  {
+    $deck = new Deck;
+    $this->assertEquals('A', $deck->card_sequences[0][0]->rank);
+    $this->assertEquals('H', $deck->card_sequences[0][0]->suit);
+    $this->assertEquals(2, $deck->card_sequences[0][1]->rank);
+    $this->assertEquals('H', $deck->card_sequences[0][1]->suit);
+  }
+
 }
 
  ?>

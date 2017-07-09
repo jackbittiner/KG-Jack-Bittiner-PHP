@@ -6,10 +6,12 @@ class Deck
 {
 
   public $cards;
+  public $card_sequences;
 
   public function __construct()
     {
         $this->cards = array();
+        $this->card_sequences = array();
         $suits = array(
             'H','C','S','D'
         );
@@ -24,6 +26,7 @@ class Deck
                 array_push($this->cards,$card);
             }
         }
+        $this->card_sequences = array_map(null, $this->cards, array_slice($this->cards, 1));
     }
 
 }
