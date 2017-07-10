@@ -30,6 +30,15 @@ class Deck
         $this->card_sequences = array_map(null, $this->cards, array_slice($this->cards, 1));
     }
 
+  public function shuffleCards()
+  {
+    shuffle($this->cards);
+    $this->checkForSequence();
+    do {
+      shuffle($this->cards);
+    } while(!$this->checkForSequence());
+  }
+
   public function checkForSequence()
   {
     $this->shuffled = true;
@@ -41,6 +50,7 @@ class Deck
         $this->shuffled = false;
       }
     }
+    return $this->shuffled;
   }
 
 }

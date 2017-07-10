@@ -43,6 +43,13 @@ class DeckTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(true, $deck->shuffled);
   }
 
+  public function testShuffle()
+  {
+    $deck = new Deck;
+    $deck->shuffleCards();
+    $this->assertEquals(true, $deck->shuffled);
+  }
+
 }
 
  ?>
