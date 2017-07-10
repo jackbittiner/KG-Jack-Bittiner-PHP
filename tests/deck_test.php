@@ -20,6 +20,12 @@ class DeckTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('D', $deck->cards[51]->suit);
   }
 
+  public function testForCardsNotShuffledOnInitialization()
+  {
+    $deck = new Deck;
+    $this->assertEquals(false, $deck->shuffled);
+  }
+
   public function testForCardSequences()
   {
     $deck = new Deck;
@@ -27,6 +33,14 @@ class DeckTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('H', $deck->card_sequences[0][0]->suit);
     $this->assertEquals(2, $deck->card_sequences[0][1]->rank);
     $this->assertEquals('H', $deck->card_sequences[0][1]->suit);
+  }
+
+  public function testCheckForSequences()
+  {
+    $deck = new Deck;
+    $deck->cards = array_reverse($deck->cards);
+    $deck->checkForSequence();
+    $this->assertEquals(true, $deck->shuffled);
   }
 
 }

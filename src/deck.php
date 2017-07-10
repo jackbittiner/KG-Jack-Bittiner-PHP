@@ -12,6 +12,7 @@ class Deck
     {
         $this->cards = array();
         $this->card_sequences = array();
+        $this->shuffled = false;
         $suits = array(
             'H','C','S','D'
         );
@@ -28,6 +29,19 @@ class Deck
         }
         $this->card_sequences = array_map(null, $this->cards, array_slice($this->cards, 1));
     }
+
+  public function checkForSequence()
+  {
+    $this->shuffled = true;
+    foreach($this->card_sequences as $sequent)
+    {
+      $array = array_map(null, $this->cards, array_slice($this->cards, 1));
+      if (in_array($sequent, $array))
+      {
+        $this->shuffled = false;
+      }
+    }
+  }
 
 }
 
