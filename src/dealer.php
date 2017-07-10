@@ -20,6 +20,11 @@ class Dealer
     }
   }
 
+  public function shuffleDeck()
+  {
+    $this->deck->shuffleCards();
+  }
+
 }
 
  ?>
