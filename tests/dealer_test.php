@@ -11,6 +11,12 @@ class DealerTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(false, $dealer->deck->shuffled);
   }
 
+  public function testForFourPlayers()
+  {
+    $dealer = new Dealer;
+    $this->assertEquals(4, count($dealer->players));
+  }
+
 }
 
 
