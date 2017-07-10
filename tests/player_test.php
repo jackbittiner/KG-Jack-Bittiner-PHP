@@ -2,7 +2,7 @@
 
 require './src/player.php';
 
-class CardTest extends PHPUnit_Framework_TestCase
+class PlayerTest extends PHPUnit_Framework_TestCase
 {
   public function testHand()
   {
