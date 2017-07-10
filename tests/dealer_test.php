@@ -32,6 +32,20 @@ class DealerTest extends PHPUnit_Framework_TestCase
     $this->assertEquals(7, count($dealer->players[0]->hand));
   }
 
+  public function testDealsOneCardAtATime()
+  {
+    $dealer = new Dealer;
+    $dealer->shuffleDeck();
+    $card1 = $dealer->deck->cards[0];
+    $card2 = $dealer->deck->cards[1];
+    $card3 = $dealer->deck->cards[2];
+    $card4 = $dealer->deck->cards[3];
+    $dealer->dealCards();
+    $this->assertEquals($card1, $dealer->players[0]->hand[0]);
+    $this->assertEquals($card2, $dealer->players[1]->hand[0]);
+    $this->assertEquals($card3, $dealer->players[2]->hand[0]);
+    $this->assertEquals($card4, $dealer->players[3]->hand[0]);
+  }
 }
 
 
