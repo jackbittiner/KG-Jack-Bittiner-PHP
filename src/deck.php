@@ -14,20 +14,7 @@ class Deck
         $this->cards = array();
         $this->card_sequences = array();
         $this->shuffled = false;
-        $suits = array(
-            'H','C','S','D'
-        );
-        $ranks = array(
-            'A', 2, 3, 4, 5, 6, 7, 8, 9, 10,'J','Q','K'
-        );
-        foreach($suits as $suit)
-        {
-            foreach($ranks as $rank)
-            {
-                $card = new Card($rank,$suit);
-                array_push($this->cards,$card);
-            }
-        }
+        $this->createDeck();
         $this->card_sequences = array_map(null, $this->cards, array_slice($this->cards, 1));
     }
 
@@ -52,6 +39,24 @@ class Deck
       }
     }
     return $this->shuffled;
+  }
+
+  private function createDeck()
+  {
+    $suits = array(
+        'H','C','S','D'
+    );
+    $ranks = array(
+        'A', 2, 3, 4, 5, 6, 7, 8, 9, 10,'J','Q','K'
+    );
+    foreach($suits as $suit)
+    {
+        foreach($ranks as $rank)
+        {
+            $card = new Card($rank,$suit);
+            array_push($this->cards,$card);
+        }
+    }
   }
 
 }
