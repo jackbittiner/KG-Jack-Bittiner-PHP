@@ -28,6 +28,9 @@ class Dealer
 
   public function dealCards()
   {
+    if ($this->deck->shuffled == false) {
+      trigger_error("Please shuffle the deck", E_USER_ERROR);
+    }
     $i = 0;
     $number_of_cards_needed = 7;
     while($i++ < $number_of_cards_needed)

@@ -7,6 +7,7 @@ class Deck
 
   public $cards;
   public $card_sequences;
+  public $shuffled;
 
   public function __construct()
     {

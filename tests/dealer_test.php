@@ -46,6 +46,13 @@ class DealerTest extends PHPUnit_Framework_TestCase
     $this->assertEquals($card3, $dealer->players[2]->hand[0]);
     $this->assertEquals($card4, $dealer->players[3]->hand[0]);
   }
+
+  public function testFailToDealIfNotShuffled ()
+  {
+    $this->setExpectedException('PHPUnit_Framework_Error');
+    $result = $dealer->dealCards();
+    $this->assertFalse($result);
+  }
 }
 
 
