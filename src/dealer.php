@@ -49,6 +49,15 @@ class Dealer
     }
   }
 
+  public function returnCardsAndShuffle()
+  {
+    foreach($this->players as $player)
+    {
+      $this->deck->cards = array_merge($this->deck->cards, $player->hand);
+      $player->hand = array();
+    }
+  }
+
 }
 
  ?>

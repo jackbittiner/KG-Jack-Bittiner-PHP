@@ -49,6 +49,7 @@ class DealerTest extends PHPUnit_Framework_TestCase
 
   public function testFailToDealIfNotShuffled ()
   {
+    $dealer = new Dealer;
     $this->setExpectedException('PHPUnit_Framework_Error');
     $result = $dealer->dealCards();
     $this->assertFalse($result);
@@ -56,11 +57,42 @@ class DealerTest extends PHPUnit_Framework_TestCase
 
   public function testFailToDealIfAlreadyDealt ()
   {
+    $dealer = new Dealer;
     $this->setExpectedException('PHPUnit_Framework_Error');
     $dealer->shuffleDeck();
     $dealer->dealCards();
     $result = $dealer->dealCards();
     $this->assertFalse($result);
+  }
+
+  public function testReturnCardsToDeck ()
+  {
+    $dealer = new Dealer;
+    $dealer->shuffleDeck();
+    $dealer->dealCards();
+    $dealer->returnCardsAndShuffle();
+    $this->assertEquals(52, count($dealer->deck->cards));
+  }
+
+  public function testEmptiesHandOnReturn ()
+  {
+    $dealer = new Dealer;
+    $dealer->shuffleDeck();
+    $dealer->dealCards();
+    $dealer->returnCardsAndShuffle();
+    $this->assertEquals(0, count($dealer->players[0]->hand));
+    $this->assertEquals(0, count($dealer->players[1]->hand));
+    $this->assertEquals(0, count($dealer->players[2]->hand));
+    $this->assertEquals(0, count($dealer->players[3]->hand));
+  }
+
+  public function testThatDeckShuffledOnceCardsReturned ()
+  {
+    $dealer = new Dealer;
+    $dealer->shuffleDeck();
+    $dealer->dealCards();
+    $dealer->returnCardsAndShuffle();
+    $this->assertEquals(true, $dealer->deck->shuffled);
   }
 
 }
