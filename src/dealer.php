@@ -38,14 +38,11 @@ class Dealer
     $number_of_cards_needed = 7;
     while($i++ < $number_of_cards_needed)
     {
-      array_push($this->players[0]->hand, $this->deck->cards[0]);
-      array_shift($this->deck->cards);
-      array_push($this->players[1]->hand, $this->deck->cards[0]);
-      array_shift($this->deck->cards);
-      array_push($this->players[2]->hand, $this->deck->cards[0]);
-      array_shift($this->deck->cards);
-      array_push($this->players[3]->hand, $this->deck->cards[0]);
-      array_shift($this->deck->cards);
+      for ($x = 0; $x < 4; $x++)
+      {
+        array_push($this->players[$x]->hand, $this->deck->cards[0]);
+        array_shift($this->deck->cards);
+      }
     }
   }
 
