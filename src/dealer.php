@@ -28,20 +28,14 @@ class Dealer
 
   public function dealCards()
   {
-    if ($this->deck->shuffled == false) {
-      trigger_error("Please shuffle the deck", E_USER_ERROR);
-    }
-    if (count($this->deck->cards) < 52) {
-      trigger_error("Return Cards and Shuffle", E_USER_ERROR);
-    }
+    $this->ableToDealCards();
     $i = 0;
     $number_of_cards_needed = 7;
     while($i++ < $number_of_cards_needed)
     {
       for ($x = 0; $x < 4; $x++)
       {
-        array_push($this->players[$x]->hand, $this->deck->cards[0]);
-        array_shift($this->deck->cards);
+        $this->deal($x);
       }
     }
   }
@@ -53,6 +47,23 @@ class Dealer
       $this->deck->cards = array_merge($this->deck->cards, $player->hand);
       $player->hand = array();
     }
+    $this->deck->shuffleCards();
+  }
+
+  private function ableToDealCards()
+  {
+    if ($this->deck->shuffled == false) {
+      trigger_error("Please shuffle the deck", E_USER_ERROR);
+    }
+    if (count($this->deck->cards) < 52) {
+      trigger_error("Return Cards and Shuffle", E_USER_ERROR);
+    }
+  }
+
+  private function deal($num)
+  {
+    array_push($this->players[$num]->hand, $this->deck->cards[0]);
+    array_shift($this->deck->cards);
   }
 
 }
