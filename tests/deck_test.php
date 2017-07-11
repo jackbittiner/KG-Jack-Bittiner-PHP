@@ -38,8 +38,7 @@ class DeckTest extends PHPUnit_Framework_TestCase
   public function testCheckForSequences()
   {
     $deck = new Deck;
-    $deck->cards = array_reverse($deck->cards);
-    $deck->checkForSequence();
+    $deck->shuffleCards();
     $this->assertEquals(true, $deck->shuffled);
   }
 

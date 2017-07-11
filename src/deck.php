@@ -27,7 +27,7 @@ class Deck
     } while(!$this->checkForSequence());
   }
 
-  public function checkForSequence()
+  private function checkForSequence()
   {
     $this->shuffled = true;
     foreach($this->card_sequences as $sequent)
