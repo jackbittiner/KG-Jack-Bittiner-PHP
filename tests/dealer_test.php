@@ -53,6 +53,16 @@ class DealerTest extends PHPUnit_Framework_TestCase
     $result = $dealer->dealCards();
     $this->assertFalse($result);
   }
+
+  public function testFailToDealIfAlreadyDealt ()
+  {
+    $this->setExpectedException('PHPUnit_Framework_Error');
+    $dealer->shuffleDeck();
+    $dealer->dealCards();
+    $result = $dealer->dealCards();
+    $this->assertFalse($result);
+  }
+
 }
 
 

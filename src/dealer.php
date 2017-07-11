@@ -31,6 +31,9 @@ class Dealer
     if ($this->deck->shuffled == false) {
       trigger_error("Please shuffle the deck", E_USER_ERROR);
     }
+    if (count($this->deck->cards) < 52) {
+      trigger_error("Return Cards and Shuffle", E_USER_ERROR);
+    }
     $i = 0;
     $number_of_cards_needed = 7;
     while($i++ < $number_of_cards_needed)
