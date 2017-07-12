@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 require('deck.php');
 require('player.php');
