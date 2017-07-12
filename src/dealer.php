@@ -8,10 +8,12 @@ class Dealer
 
   public $deck;
   public $players;
+  public $able_to_deal;
 
   public function __construct()
   {
     $this->deck = new Deck;
+    $this->able_to_deal = false;
     $this->players = array();
     $i = 0;
     $number_of_players = 4;
@@ -29,13 +31,16 @@ class Dealer
   public function dealCards()
   {
     $this->ableToDealCards();
-    $i = 0;
-    $number_of_cards_needed = 7;
-    while($i++ < $number_of_cards_needed)
+    if($this->able_to_deal == true)
     {
-      for ($x = 0; $x < 4; $x++)
+      $i = 0;
+      $number_of_cards_needed = 7;
+      while($i++ < $number_of_cards_needed)
       {
-        $this->deal($x);
+        for ($x = 0; $x < 4; $x++)
+        {
+          $this->deal($x);
+        }
       }
     }
   }
@@ -53,10 +58,15 @@ class Dealer
   private function ableToDealCards()
   {
     if ($this->deck->shuffled == false) {
-      trigger_error("Please shuffle the deck", E_USER_ERROR);
+      $this->able_to_deal = false;
+      trigger_error("Please shuffle the deck");
     }
-    if (count($this->deck->cards) < 52) {
-      trigger_error("Return Cards and Shuffle", E_USER_ERROR);
+    elseif (count($this->deck->cards) < 52) {
+      $this->able_to_deal = false;
+      trigger_error("Return Cards and Shuffle");
+    }
+    else {
+      $this->able_to_deal = true;
     }
   }
 
